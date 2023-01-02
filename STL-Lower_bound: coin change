@@ -1,0 +1,22 @@
+Q. Tell me the number of min coins from the money
+#include <bits/stdc++.h>
+using namespace std;
+//coin change problem with binary search lower bound stl
+bool compare(int a,int b){// compare function which compare the two integers
+    return a<=b;
+}
+//The ways where we will get the minimum number of coins 
+int main() {
+    int money_array[]={1,2,5,10,50,100,200,500,1000};
+    int money=150;
+    int n=sizeof(money_array)/sizeof(int);
+   vector<int>v;
+   while(money>0){
+      int lb=lower_bound(money_array,money_array+n,money,compare)-money_array-1;
+      money-=money_array[lb];
+      v.push_back(money_array[lb]);
+   }
+   for(int i=0;i<v.size();i++){
+       cout<<v[i]<<" ";
+   }
+}
